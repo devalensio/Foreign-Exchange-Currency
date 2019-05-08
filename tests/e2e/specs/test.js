@@ -1,8 +1,15 @@
 // https://docs.cypress.io/api/introduction/api.html
 
 describe('My First Test', () => {
-  it('Visits the app root url', () => {
+  beforeEach(() => {
     cy.visit('/');
-    cy.contains('h1', 'Welcome to Your Vue.js App');
+  });
+
+  it('Visits the app root url', () => {
+    cy.contains('span', 'Foreign Exchange');
+  });
+
+  it('loads card-list', () => {
+    cy.get('.card-list').should('have.length.gt', 3);
   });
 });
