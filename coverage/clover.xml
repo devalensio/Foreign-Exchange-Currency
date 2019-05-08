@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1557328386323" clover="3.2.0">
+  <project timestamp="1557328386323" name="All files">
+    <metrics statements="46" coveredstatements="40" conditionals="4" coveredconditionals="3" methods="5" coveredmethods="5" elements="55" coveredelements="48" complexity="0" loc="46" ncloc="46" packages="4" files="6" classes="6">
+      <package name="src">
+        <metrics statements="6" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <file name="App.vue" path="/Users/devdots/Documents/foreign-exchange-currency/src/App.vue">
+          <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="11" count="1" type="stmt"/>
+          <line num="12" count="1" type="stmt"/>
+        </file>
+        <file name="service.js" path="/Users/devdots/Documents/foreign-exchange-currency/src/service.js">
+          <metrics statements="4" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+          <line num="4" count="13" type="stmt"/>
+          <line num="5" count="13" type="stmt"/>
+          <line num="6" count="13" type="stmt"/>
+          <line num="8" count="0" type="stmt"/>
+        </file>
+      </package>
+      <package name="src.components">
+        <metrics statements="6" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <file name="CurrencyCards.vue" path="/Users/devdots/Documents/foreign-exchange-currency/src/components/CurrencyCards.vue">
+          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="33" count="1" type="stmt"/>
+        </file>
+        <file name="Snackbar.vue" path="/Users/devdots/Documents/foreign-exchange-currency/src/components/Snackbar.vue">
+          <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="18" count="0" type="stmt"/>
+          <line num="21" count="0" type="stmt"/>
+          <line num="25" count="0" type="stmt"/>
+          <line num="28" count="0" type="stmt"/>
+          <line num="33" count="0" type="stmt"/>
+        </file>
+      </package>
+      <package name="src.fixtures">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <file name="currency.js" path="/Users/devdots/Documents/foreign-exchange-currency/src/fixtures/currency.js">
+          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="1" type="stmt"/>
+        </file>
+      </package>
+      <package name="src.views.Home">
+        <metrics statements="33" coveredstatements="33" conditionals="4" coveredconditionals="3" methods="4" coveredmethods="4"/>
+        <file name="index.vue" path="/Users/devdots/Documents/foreign-exchange-currency/src/views/Home/index.vue">
+          <metrics statements="33" coveredstatements="33" conditionals="4" coveredconditionals="3" methods="4" coveredmethods="4"/>
+          <line num="40" count="1" type="stmt"/>
+          <line num="41" count="1" type="stmt"/>
+          <line num="42" count="1" type="stmt"/>
+          <line num="49" count="13" type="stmt"/>
+          <line num="61" count="14" type="stmt"/>
+          <line num="63" count="1" type="cond" truecount="1" falsecount="1"/>
+          <line num="64" count="1" type="stmt"/>
+          <line num="65" count="1" type="stmt"/>
+          <line num="68" count="1" type="stmt"/>
+          <line num="70" count="5" type="stmt"/>
+          <line num="75" count="10" type="stmt"/>
+          <line num="83" count="20" type="stmt"/>
+          <line num="87" count="1" type="stmt"/>
+          <line num="88" count="1" type="stmt"/>
+          <line num="92" count="1" type="stmt"/>
+          <line num="95" count="2" type="cond" truecount="2" falsecount="0"/>
+          <line num="96" count="1" type="stmt"/>
+          <line num="101" count="1" type="stmt"/>
+          <line num="102" count="1" type="stmt"/>
+          <line num="106" count="1" type="stmt"/>
+          <line num="107" count="1" type="stmt"/>
+          <line num="108" count="1" type="stmt"/>
+          <line num="109" count="1" type="stmt"/>
+          <line num="113" count="6" type="stmt"/>
+          <line num="114" count="4" type="stmt"/>
+          <line num="118" count="1" type="stmt"/>
+          <line num="121" count="1" type="stmt"/>
+          <line num="124" count="1" type="stmt"/>
+          <line num="127" count="1" type="stmt"/>
+          <line num="133" count="4" type="stmt"/>
+          <line num="139" count="1" type="stmt"/>
+          <line num="142" count="6" type="stmt"/>
+          <line num="146" count="13" type="stmt"/>
+        </file>
+      </package>
+    </metrics>
+  </project>
+</coverage>

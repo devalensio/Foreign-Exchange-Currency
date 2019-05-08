@@ -4,22 +4,18 @@
     v-content
       v-container.app-container
         router-view
+      Snackbar
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
 import Navbar from '@/components/Navbar.vue';
+import Snackbar from '@/components/Snackbar.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld,
     Navbar,
-  },
-  data() {
-    return {
-      //
-    };
+    Snackbar,
   },
 };
 </script>
