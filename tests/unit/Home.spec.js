@@ -64,35 +64,35 @@ describe('Home.vue', () => {
     await wrp.vm.getCurrency();
     expect(wrp.vm.currencyOptions).toEqual([
       {
-        currency: "AUD",
-        rates: 1.4305741584
-      }, 
+        currency: 'AUD',
+        rates: 1.4305741584,
+      },
       {
-        currency: "RUB",
-        rates: 65.1897875379
-      }, 
+        currency: 'RUB',
+        rates: 65.1897875379,
+      },
       {
-        currency: "SEK",
-        rates: 9.5959650062
-      }
+        currency: 'SEK',
+        rates: 9.5959650062,
+      },
     ]);
     expect(wrp.vm.currencies).toEqual([
       {
-        currency: "EUR",
-        rates: 0.8929368694
-      }, 
+        currency: 'EUR',
+        rates: 0.8929368694,
+      },
       {
-        currency: "GBP",
-        rates: 0.7631931422
-      }, 
+        currency: 'GBP',
+        rates: 0.7631931422,
+      },
       {
-        currency: "SGD",
-        rates: 1.3619889305
-      }, 
+        currency: 'SGD',
+        rates: 1.3619889305,
+      },
       {
-        currency: "IDR",
-        rates: 14292.4993302973
-      }
+        currency: 'IDR',
+        rates: 14292.4993302973,
+      },
     ]);
   });
 
@@ -109,15 +109,15 @@ describe('Home.vue', () => {
         {
           currency: 'AUD',
           rates: 1.4305741584,
-        }, 
+        },
         {
           currency: 'EUR',
           rates: 0.8929368694,
-        }, 
+        },
         {
           currency: 'GBP',
           rates: 0.7631931422,
-        }, 
+        },
         {
           currency: 'IDR',
           rates: 14292.4993302973,
@@ -206,20 +206,20 @@ describe('Home.vue', () => {
     expect(wrp.vm.showAddButton).toHaveBeenCalled();
     expect(wrp.vm.currencies).toEqual([
       {
-        currency: "EUR",
+        currency: 'EUR',
         rates: 0.8929368694,
-        total: 8.929368694
-      }, 
+        total: 8.929368694,
+      },
       {
-        currency: "IDR",
+        currency: 'IDR',
         rates: 14292.4993302973,
-        total: 142924.993302973
-      }, 
+        total: 142924.993302973,
+      },
       {
-        currency: "GBP",
+        currency: 'GBP',
         rates: 0.7631931422,
-        total: 7.631931422
-      }
+        total: 7.631931422,
+      },
     ]);
     expect(wrp.vm.newCurrency).toEqual(null);
   });
