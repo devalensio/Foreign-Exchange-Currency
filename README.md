@@ -4,14 +4,14 @@ This project helps us to calculate exchange rates easily.
 
 ### Prerequisites
 
-[Node.js](https://nodejs.org/en/) (>=4.x, 8.x preferred), and Npm version 4+(Yarn preferred)
+[Node.js](https://nodejs.org/en/) (>=4.x, 8.x preferred), and Npm version 4+
 
 ### Usage
 
 ```
 git clone https://github.com/devalensio/foreign-exchange-currency.git
 cd foreign-exchange-currency
-npm install (npm i / yarn)
+npm install (npm i)
 npm run serve
 ```
 
