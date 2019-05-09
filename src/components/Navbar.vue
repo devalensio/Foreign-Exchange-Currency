@@ -1,7 +1,7 @@
 <template lang="pug">
   v-toolbar.nav-toolbar(app)
     v-toolbar-title
-      span Foreign Exchange
+      span Foreign Exchange Currency
 </template>
 
 <style lang="stylus">
@@ -13,5 +13,5 @@
 
   @media (max-width: 500px)
     .v-toolbar__content
-      padding: 0 25vw
+      padding: 0 10vw
 </style>
