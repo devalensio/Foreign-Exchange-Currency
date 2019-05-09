@@ -32,7 +32,6 @@ module.exports = {
     'src/**/*.{js,vue}',
     '!src/main.js', // No need to cover bootstrap file
     '!src/registerServiceWorker.js', // No need to cover bootstrap file
-    '!src/store.js', // No need to cover bootstrap file
     '!src/router.js', // No need to cover bootstrap file
     '!src/plugins/vuetify.js', // No need to cover bootstrap file
     '!node_modules/**',

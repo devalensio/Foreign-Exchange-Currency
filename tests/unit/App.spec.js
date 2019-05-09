@@ -18,7 +18,7 @@ describe('App.vue', () => {
     expect(wrp.isVueInstance()).toBeTruthy();
   });
 
-  it('should render Navbar  ', () => {
+  it('should render Navbar', () => {
     wrp.find(Navbar).exists();
   });
 });

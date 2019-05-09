@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.test
+  div
     v-card.shadow-box(flat)
       v-container(grid-list-sm)
         v-layout(row wrap)
@@ -11,10 +11,10 @@
             v-text-field(v-model="inputAmount" solo outline placeholder="enter amount")
         v-layout(row wrap)
     v-card.shadow-box(flat)
-      v-container.card-list(grid-list-sm v-for="(item, n) in rates" :key="n")
+      v-container.card-list(grid-list-sm v-for="(item, n) in currencies" :key="n")
         CurrencyCards(
           :currency="item.currency" :rates="item.rates"
-          :name="showCurrencyName(item.currency)" :total="item.total"
+          :name="showCurrencyName(item.currency)" :amount="Number(inputAmount)"
           :index="n" @remove="removeCurrency"
         )
       v-container.card-list(grid-list-sm)
@@ -29,7 +29,7 @@
                 v-layout(row wrap)
                   v-flex(xs12 sm9)
                     v-combobox(
-                      v-model="newCurrency" :items="items"
+                      v-model="newCurrency" :items="currencyOptions"
                       item-text="currency" placeholder="Insert" solo
                     )
                   v-flex(xs12 sm3)
@@ -48,9 +48,8 @@ export default {
   data() {
     return {
       inputAmount: '10.00',
-      items: [], // for the dropdown list
-      rates: [], // for the currency-card list
-      results: [], // results from the api
+      currencies: [], // for the currency-card list
+      currencyOptions: [], // currencyOptions from the api
       newCurrency: null,
       addButtonVisible: true,
       dropDownVisible: false,
@@ -62,12 +61,13 @@ export default {
 
       if (get) {
         const { rates } = get.data;
-        const filters = ['IDR', 'EUR', 'GBP'];
+        const filters = ['IDR', 'EUR', 'GBP', 'SGD'];
+        const fmtRates = this.formatObject(rates);
 
-        // get the rates from api
-        this.results = this.formatObject(rates);
-        // get 3 currencies for the home page(IDR, EUR, GBP)
-        this.rates = this.results.filter(({ currency }) => filters.includes(currency));
+        // get 3 currencies for the home page(IDR, EUR, GBP, SGD)
+        this.currencies = fmtRates.filter(({ currency }) => filters.includes(currency));
+        // get the dropdown list without the 4 currencies from the home page
+        this.currencyOptions = fmtRates.filter(item => this.currencies.indexOf(item) === -1);
       }
     },
     formatObject(obj) {
@@ -75,7 +75,6 @@ export default {
       return Object.keys(obj).map(key => ({
         currency: key,
         rates: obj[key],
-        total: obj[key] * this.inputAmount,
       }));
     },
     showCurrencyName(currency) {
@@ -83,34 +82,38 @@ export default {
       return currencyLib[currency];
     },
     addCurrency() {
-      // when user click 'add more currency', dropdown show up and add button dissapear
+      // when user click 'add more currency', dropdown show up and add button disappear
       this.hideAddButton();
       this.showDropDown();
     },
     removeCurrency(val) {
       // remove the current currency on the screen
-      this.rates.splice(val, 1);
+      this.currencyOptions.push(this.currencies[val]);
+      this.currencies.splice(val, 1);
     },
     submitCurrency() {
+      // if users submit nothing, the alert pops up
       if (!this.newCurrency) {
         const msg = {
-          message: 'please choose one currency',
-          color: 'error',
+          message: 'Please choose one currency',
+          color: 'warning',
         };
 
         this.$store.commit('snackbar/show', msg);
         return;
       }
 
+      let position = this.currencyOptions.indexOf(this.newCurrency);
+
       // add currency when user submit the new one
-      this.rates.push(this.newCurrency);
+      this.currencies.push(this.newCurrency);
+      // after user submit the new currency, it splices
+      this.currencyOptions.splice(position, 1);
+      // reset the text field to null
       this.newCurrency = null;
+
       this.hideDropDown();
       this.showAddButton();
-    },
-    getUniqueValue() {
-      // if currency has already been selected, it filters the drop down list
-      this.items = this.results.filter(result => this.rates.indexOf(result) === -1);
     },
     showAddButton() {
       this.addButtonVisible = true;
@@ -123,21 +126,6 @@ export default {
     },
     hideDropDown() {
       this.dropDownVisible = false;
-    },
-  },
-  watch: {
-    inputAmount(val) {
-      // watch if inputAmount changes, and update the value
-      const newRates = this.rates.map(rate => ({
-        currency: rate.currency,
-        rates: rate.rates,
-        total: rate.rates * Number(val),
-      }));
-
-      Object.assign(this.rates, newRates);
-    },
-    rates() {
-      this.getUniqueValue();
     },
   },
   created() {
@@ -154,7 +142,7 @@ export default {
 
   .left-section
   .right-section
-    min-height: 18vh
+    min-height: 150px
 
   .add-currency-btn
     cursor: pointer
@@ -164,18 +152,9 @@ export default {
       color: white
 
   .shadow-box .v-icon
-    line-height: 18vh
+    line-height: 150px
     vertical-align: center
 
   .v-text-field__details
     display: none
-
-  @media (max-width: 500px)
-    .left-section
-    .right-section
-      min-height: 25vh
-
-    .shadow-box .v-icon
-      line-height: 25vh
-      vertical-align: center
 </style>
