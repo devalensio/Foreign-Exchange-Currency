@@ -13,7 +13,7 @@
     v-card.shadow-box(flat)
       v-container.card-list(grid-list-sm v-for="(item, n) in currencies" :key="n")
         CurrencyCards(
-          :currency="item.currency" :rates="item.rates"
+          :currency="item.currency" :rate="item.rates"
           :name="showCurrencyName(item.currency)" :amount="Number(inputAmount)"
           :index="n" @remove="removeCurrency"
         )
@@ -66,7 +66,7 @@ export default {
 
         // get 3 currencies for the home page(IDR, EUR, GBP, SGD)
         this.currencies = fmtRates.filter(({ currency }) => filters.includes(currency));
-        // get the dropdown list without the 4 currencies from the home page
+        // get the dropdown list data without the 4 currencies from the home page
         this.currencyOptions = fmtRates.filter(item => this.currencies.indexOf(item) === -1);
       }
     },
@@ -82,7 +82,7 @@ export default {
       return currencyLib[currency];
     },
     addCurrency() {
-      // when user click 'add more currency', dropdown show up and add button disappear
+      // when users click 'add more currency', dropdown show up and add button disappear
       this.hideAddButton();
       this.showDropDown();
     },
@@ -100,20 +100,20 @@ export default {
         };
 
         this.$store.commit('snackbar/show', msg);
-        return;
+      } else {
+        // check the position of the choosen currency
+        const position = this.currencyOptions.indexOf(this.newCurrency);
+
+        // add currency when users submit the new one
+        this.currencies.push(this.newCurrency);
+        // after users submit the new currency, delete from the currency options
+        this.currencyOptions.splice(position, 1);
+        // reset the text field to null
+        this.newCurrency = null;
+        // hide dropdown and show the add button
+        this.hideDropDown();
+        this.showAddButton();
       }
-
-      const position = this.currencyOptions.indexOf(this.newCurrency);
-
-      // add currency when user submit the new one
-      this.currencies.push(this.newCurrency);
-      // after user submit the new currency, it splices
-      this.currencyOptions.splice(position, 1);
-      // reset the text field to null
-      this.newCurrency = null;
-
-      this.hideDropDown();
-      this.showAddButton();
     },
     showAddButton() {
       this.addButtonVisible = true;
