@@ -46,54 +46,53 @@ describe('Home.vue', () => {
     expect(wrp.isVueInstance()).toBeTruthy();
   });
 
-  it('should assign this.ratelist once getCurrencyService return the data', async () => {
+  it('should assign currencies and currencyOptions once getCurrencyService return the data', async () => {
     const mockData = {
       data: {
         rates: {
           AUD: 1.4305741584,
           EUR: 0.8929368694,
           GBP: 0.7631931422,
+          SGD: 1.3619889305,
           IDR: 14292.4993302973,
+          RUB: 65.1897875379,
+          SEK: 9.5959650062,
         },
       },
     };
     sandbox.stub(service, 'getCurrencyService').returns(mockData);
     await wrp.vm.getCurrency();
-    expect(wrp.vm.results).toEqual([
+    expect(wrp.vm.currencyOptions).toEqual([
       {
-        currency: 'AUD',
-        rates: 1.4305741584,
-        total: 14.305741584,
-      }, {
-        currency: 'EUR',
-        rates: 0.8929368694,
-        total: 8.929368694,
-      }, {
-        currency: 'GBP',
-        rates: 0.7631931422,
-        total: 7.631931422,
-      }, {
-        currency: 'IDR',
-        rates: 14292.4993302973,
-        total: 142924.993302973,
-      },
+        currency: "AUD",
+        rates: 1.4305741584
+      }, 
+      {
+        currency: "RUB",
+        rates: 65.1897875379
+      }, 
+      {
+        currency: "SEK",
+        rates: 9.5959650062
+      }
     ]);
-    expect(wrp.vm.rates).toEqual([
+    expect(wrp.vm.currencies).toEqual([
       {
-        currency: 'EUR',
-        rates: 0.8929368694,
-        total: 8.929368694,
-      },
+        currency: "EUR",
+        rates: 0.8929368694
+      }, 
       {
-        currency: 'GBP',
-        rates: 0.7631931422,
-        total: 7.631931422,
-      },
+        currency: "GBP",
+        rates: 0.7631931422
+      }, 
       {
-        currency: 'IDR',
-        rates: 14292.4993302973,
-        total: 142924.993302973,
-      },
+        currency: "SGD",
+        rates: 1.3619889305
+      }, 
+      {
+        currency: "IDR",
+        rates: 14292.4993302973
+      }
     ]);
   });
 
@@ -110,19 +109,18 @@ describe('Home.vue', () => {
         {
           currency: 'AUD',
           rates: 1.4305741584,
-          total: 14.305741584,
-        }, {
+        }, 
+        {
           currency: 'EUR',
           rates: 0.8929368694,
-          total: 8.929368694,
-        }, {
+        }, 
+        {
           currency: 'GBP',
           rates: 0.7631931422,
-          total: 7.631931422,
-        }, {
+        }, 
+        {
           currency: 'IDR',
           rates: 14292.4993302973,
-          total: 142924.993302973,
         },
       ],
     );
@@ -145,7 +143,7 @@ describe('Home.vue', () => {
 
   it('should remove currency with given position if removeCurrency is triggered', () => {
     wrp.setData({
-      rates: [
+      currencies: [
         {
           currency: 'EUR',
           rates: 0.8929368694,
@@ -164,7 +162,7 @@ describe('Home.vue', () => {
       ],
     });
     wrp.vm.removeCurrency(1);
-    expect(wrp.vm.rates).toEqual([
+    expect(wrp.vm.currencies).toEqual([
       {
         currency: 'EUR',
         rates: 0.8929368694,
@@ -190,7 +188,7 @@ describe('Home.vue', () => {
       showAddButton: jest.fn(),
     });
     wrp.setData({
-      rates: [
+      currencies: [
         {
           currency: 'EUR',
           rates: 0.8929368694,
@@ -206,22 +204,22 @@ describe('Home.vue', () => {
     wrp.vm.submitCurrency();
     expect(wrp.vm.hideDropDown).toHaveBeenCalled();
     expect(wrp.vm.showAddButton).toHaveBeenCalled();
-    expect(wrp.vm.rates).toEqual([
+    expect(wrp.vm.currencies).toEqual([
       {
-        currency: 'EUR',
+        currency: "EUR",
         rates: 0.8929368694,
-        total: 8.929368694,
-      },
+        total: 8.929368694
+      }, 
       {
-        currency: 'IDR',
+        currency: "IDR",
         rates: 14292.4993302973,
-        total: 142924.993302973,
-      },
+        total: 142924.993302973
+      }, 
       {
-        currency: 'GBP',
+        currency: "GBP",
         rates: 0.7631931422,
-        total: 7.631931422,
-      },
+        total: 7.631931422
+      }
     ]);
     expect(wrp.vm.newCurrency).toEqual(null);
   });
@@ -249,40 +247,5 @@ describe('Home.vue', () => {
   it('should assign dropDownVisible to false if hideDropDown is trigerred', () => {
     wrp.vm.hideDropDown();
     expect(wrp.vm.dropDownVisible).toBe(false);
-  });
-
-  it('should assign this.rates with new value if inputAmount changes', () => {
-    wrp.vm.rates = [{
-      currency: 'EUR',
-      rates: 0.8929368694,
-      total: 8.929368694,
-    },
-    {
-      currency: 'IDR',
-      rates: 14292.4993302973,
-      total: 142924.993302973,
-    },
-    {
-      currency: 'GBP',
-      rates: 0.7631931422,
-      total: 7.631931422,
-    },
-    ];
-    wrp.vm.inputAmount = 100;
-    expect(wrp.vm.rates).toEqual([
-      {
-        currency: 'EUR',
-        rates: 0.8929368694,
-        total: 89.29368694,
-      }, {
-        currency: 'IDR',
-        rates: 14292.4993302973,
-        total: 1429249.9330297299,
-      }, {
-        currency: 'GBP',
-        rates: 0.7631931422,
-        total: 76.31931422,
-      },
-    ]);
   });
 });
