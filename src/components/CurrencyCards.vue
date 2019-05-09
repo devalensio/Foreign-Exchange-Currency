@@ -8,7 +8,7 @@
               v-flex(xs4 sm4)
                 h2 {{ currency }}
               v-flex.text-xs-right(x8 sm8)
-                h2 {{ total | currency }}
+                h2 {{ rates * amount | currency }}
           v-layout(row wrap)
             v-flex(xs12 sm12)
               h3 {{ currency }} - {{ name }}
@@ -25,8 +25,8 @@ export default {
     currency: String,
     name: String,
     rates: Number,
-    total: Number,
     index: Number,
+    amount: Number,
   },
   methods: {
     deleteItem(index) {
