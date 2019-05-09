@@ -103,7 +103,7 @@ export default {
         return;
       }
 
-      let position = this.currencyOptions.indexOf(this.newCurrency);
+      const position = this.currencyOptions.indexOf(this.newCurrency);
 
       // add currency when user submit the new one
       this.currencies.push(this.newCurrency);

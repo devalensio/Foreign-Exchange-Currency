@@ -29,7 +29,7 @@ describe('Snackbar.vue', () => {
   beforeEach(() => {
     wrp = mount(Snackbar, {
       localVue,
-      store
+      store,
     });
   });
 
